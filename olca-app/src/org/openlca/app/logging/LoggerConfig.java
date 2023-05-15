@@ -63,7 +63,7 @@ public class LoggerConfig {
 	}
 
 	/**
-	 * Depending on the log-level of the openLCA domain logger,
+	 * Depending on the log-level of the aicpLCA domain logger,
 	 * we hide some details for the root logger.
 	 */
 	private static Level translateForRoot(Level level) {

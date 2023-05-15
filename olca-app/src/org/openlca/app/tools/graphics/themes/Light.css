@@ -1,8 +1,8 @@
-/* The 'Default' theme of the openLCA graph editor. */
+/* The 'Default' theme of the aicpLCA graph editor. */
 
 /* basic attributes and graph settings */
 :root {
-  --version: '2';       /* the version of openLCA */
+  --version: '2';       /* the version of aicpLCA */
   --name: 'Light';    /* the name of the theme */
   --mode: 'light';      /* this is a light theme */
 }

@@ -2,16 +2,16 @@
 
 DIST="openLCA_macOS_x64_2.0.0.beta3_$(date '+%Y-%m-%d')"
 BUNDLE_ID="org.openlca.app"
-APP_DMG="build/tmp/macosx.cocoa.x86_64/openLCA_dmg/openLCA.app"
-APP_PKG="build/tmp/macosx.cocoa.x86_64/openLCA_pkg/openLCA.app"
-APP_UNSIGNED="build/macosx.cocoa.x86_64/openLCA/openLCA.app"
+APP_DMG="build/tmp/macosx.cocoa.x86_64/openLCA_dmg/aicpLCA.app"
+APP_PKG="build/tmp/macosx.cocoa.x86_64/openLCA_pkg/aicpLCA.app"
+APP_UNSIGNED="build/macosx.cocoa.x86_64/aicpLCA/aicpLCA.app"
 DMG="build/dist/${DIST}.dmg"
 PKG="build/dist/${DIST}.pkg"
 
 # Image disk parameters
 BACKGROUND_DMG="resources/background_dmg.png"
 VOLUME_ICON_FILE="$APP_UNSIGNED/Contents/Resources/logo.icns"
-VOLUME_NAME="openLCA Installer"
+VOLUME_NAME="aicpLCA Installer"
 
 
 clean() {
@@ -40,7 +40,7 @@ sign_lib() {
    -or -name "*.jnilib" |
     while read -r file;
     do
-      codesign -f -v --entitlements "${APP}/Contents/openLCA.entitlements" \
+      codesign -f -v --entitlements "${APP}/Contents/aicpLCA.entitlements" \
         --timestamp --options runtime  -i "$BUNDLE_ID" -s "$APP_ID" "$file";
     done
 }
@@ -69,7 +69,7 @@ sign_jar() {
           jar xf "../${p}" "$file"
           cd ..
           # Sign the library
-          codesign -f -v --entitlements "${APP}/Contents/openLCA.entitlements" \
+          codesign -f -v --entitlements "${APP}/Contents/aicpLCA.entitlements" \
            --timestamp --options runtime  -i "$BUNDLE_ID" -s "$APP_ID" \
             "tmp/${file}"
           # Update the JAR with the signed library
@@ -133,7 +133,7 @@ notarize() {
   cp_app
 
   printf "\nConverting the XML files to the right format...\n"
-  plutil -convert xml1 "${APP}/Contents/openLCA.entitlements"
+  plutil -convert xml1 "${APP}/Contents/aicpLCA.entitlements"
   plutil -convert xml1 "${APP}/Contents/Info.plist"
 
   printf "\nRemoving eventual quarantine attribute...\n"
@@ -142,13 +142,13 @@ notarize() {
   sign_lib
   sign_jar
 
-  printf "\nSigning the openLCA executable at runtime...\n"
-  codesign -f -v --deep --entitlements "${APP}/Contents/openLCA.entitlements" \
+  printf "\nSigning the aicpLCA executable at runtime...\n"
+  codesign -f -v --deep --entitlements "${APP}/Contents/aicpLCA.entitlements" \
     --timestamp --options runtime -i "$BUNDLE_ID" -s "$APP_ID" \
-    "${APP}/Contents/MacOS/openLCA"
+    "${APP}/Contents/MacOS/aicpLCA"
 
   printf "\nSigning the app bundle with the certificate...\n"
-  codesign -f -v --entitlements "${APP}/Contents/openLCA.entitlements" \
+  codesign -f -v --entitlements "${APP}/Contents/aicpLCA.entitlements" \
     --timestamp --options runtime  -i "$BUNDLE_ID" -s "$APP_ID" "$APP"
   printf "\nChecking signature of the bundle...\n"
   codesign -dvv "$APP"
@@ -174,7 +174,7 @@ upload_pkg() {
 usage() {
 	cat <<EOHELP
 
-Create Mac distributions for openLCA.
+Create Mac distributions for aicpLCA.
 
 Usage:  $0 [args] [<pkg>|<dmg>|<upload>]
 
@@ -245,7 +245,7 @@ fi
 
 if [ "$1" = "pkg" ] || [ "$1" = "upload" ]; then
   while true; do
-      read -rp "Do you wish to upload openLCA to the App Store? (Y/n)" answer
+      read -rp "Do you wish to upload aicpLCA to the App Store? (Y/n)" answer
       case $answer in
           Y ) upload_pkg; break;;
           n ) exit;;

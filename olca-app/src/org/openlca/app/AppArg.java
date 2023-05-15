@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Application arguments that can be passed to the application via the command
- * line or the openLCA.ini file.
+ * line or the aicpLCA.ini file.
  */
 public enum AppArg {
 
@@ -26,7 +26,7 @@ public enum AppArg {
 	DATA_DIR("olcaDataDir"),
 
 	/**
-	 * olcaBuild: the openLCA build number which was set in the build.
+	 * olcaBuild: the aicpLCA build number which was set in the build.
 	 */
 	BUILD_NUMBER("olcaBuild"),
 

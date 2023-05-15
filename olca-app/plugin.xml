@@ -483,7 +483,7 @@
 
 	<extension
 			id="org.openlca.app.Application"
-			name="openLCA"
+			name="aicpLCA"
 			point="org.eclipse.core.runtime.applications">
 		<application>
 			<run
@@ -571,18 +571,18 @@
 		</menuContribution>
 	</extension>
 	<extension
-			id="openLCA"
+			id="aicpLCA"
 			point="org.eclipse.core.runtime.products">
 		<product
 				application="org.openlca.app.Application"
-				name="openLCA">
+				name="aicpLCA">
 			<property
 					name="windowImages"
 					value="icons/logo/16_32bit.png,icons/logo/32_32bit.png,icons/logo/48_32bit.png,icons/logo/64.png,icons/logo/128.png">
 			</property>
 			<property
          name="aboutText"
-         value="openLCA 2.0.0&#x0A;&#x0A;Copyright (c) 2007 - 2022 GreenDelta. All rights reserved.&#x0A;Visit http://openlca.org and http://greendelta.com&#x0A;&#x0A;This product includes software developed in the openLCA&#x0A;project and other open source software.">
+         value="AICP LCA Tool 1.0.0&#x0A;&#x0A;Copyright (c) 2023 GTech International Ltd. All rights reserved.&#x0A;Visit https://gtech.world">
 			</property>
 			<property
 					name="aboutImage"
@@ -590,29 +590,25 @@
 			</property>
 			<property
 					name="appName"
-					value="openLCA">
+					value="aicpLCA">
 			</property>
 			<property
 					name="introBrandingImage"
 					value="product:icons/logo/glowing.png"/>
 			<property
 					name="introBrandingImageText"
-					value="openLCA"/>
-			<property
-					name="startupProgressRect"
-					value="0,437,586,5">
-			</property>
-			<property
-					name="startupForegroundColor"
-					value="000000">
-			</property>
-			<property
-					name="startupMessageRect"
-					value="7,525,445,20">
-			</property>
+					value="aicpLCA"/>
    <property
-         name="preferenceCustomization"
-         value="plugin_customization.ini">
+         name="startupForegroundColor"
+         value="000000">
+   </property>
+   <property
+         name="startupMessageRect"
+         value="7,525,445,20">
+   </property>
+   <property
+         name="startupProgressRect"
+         value="0,437,586,5">
    </property>
 		</product>
 	</extension>
@@ -861,7 +857,7 @@
 		</category>
 		<category
 				id="openlca.export.category"
-				name="openLCA">
+				name="aicpLCA">
 		</category>
 		<category
 				id="export.category.simapro"

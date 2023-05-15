@@ -52,11 +52,11 @@ public class Console {
 		var consoles = manager.getConsoles();
 		if (consoles != null) {
 			for (var c : consoles) {
-				if ("openLCA".equals(c.getName()))
+				if ("aicpLCA".equals(c.getName()))
 					return (MessageConsole) c;
 			}
 		}
-		var console = new MessageConsole("openLCA", null);
+		var console = new MessageConsole("aicpLCA", null);
 		// set the buffer size of the console
 		console.setWaterMarks(1000, 50000);
 		manager.addConsoles(new IConsole[] { console });

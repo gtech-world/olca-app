@@ -87,7 +87,7 @@ public class FileImport {
 		}
 
 		MsgBox.info("Unknown format",
-			"openLCA could not detect the format of the file '"
+			"aicpLCA could not detect the format of the file '"
 				+ file.getName() + "'. You can also try an "
 				+ "import option in the generic import dialog "
 				+ "under Import > Other");

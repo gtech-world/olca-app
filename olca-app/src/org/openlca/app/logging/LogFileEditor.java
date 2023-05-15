@@ -28,7 +28,7 @@ public class LogFileEditor extends FormEditor {
 		var files = logFiles();
 		if (files.isEmpty()) {
 			MsgBox.info("No log-files available",
-				"Could not find any log file in the openLCA workspace.");
+				"Could not find any log file in the aicpLCA workspace.");
 			return;
 		}
 		var input = new SimpleEditorInput("Log files", "Log file");

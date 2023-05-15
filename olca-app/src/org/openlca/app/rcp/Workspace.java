@@ -12,8 +12,8 @@ import org.openlca.core.DataDir;
 import org.openlca.core.library.LibraryDir;
 
 /**
- * The workspace configuration of openLCA. The workspace is located in the
- * folder "openLCA-data" in the user's home directory (system property
+ * The workspace configuration of aicpLCA. The workspace is located in the
+ * folder "aicpLCA-data" in the user's home directory (system property
  * user.home).
  */
 public class Workspace {

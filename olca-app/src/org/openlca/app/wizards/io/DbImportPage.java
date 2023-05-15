@@ -84,7 +84,7 @@ class DbImportPage extends WizardPage {
 	}
 
 	/**
-	 * Returns the existing databases of the openLCA workspace that could be
+	 * Returns the existing databases of the aicpLCA workspace that could be
 	 * imported into the currently active database.
 	 */
 	private List<DatabaseConfig> existing() {

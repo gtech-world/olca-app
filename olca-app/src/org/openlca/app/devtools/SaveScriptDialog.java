@@ -39,7 +39,7 @@ public class SaveScriptDialog extends FormDialog {
 		if (file == null || !file.exists())
 			return Optional.empty();
 		// for imported scripts we try to detect the
-		// encoding. in the openLCA workspace we save
+		// encoding. in the aicpLCA workspace we save
 		// everything encoded in utf-8
 		try {
 			var bytes = Files.readAllBytes(file.toPath());

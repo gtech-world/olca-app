@@ -1,11 +1,11 @@
 olca-refdata
 ============
-This project contains the reference data of the openLCA application. The data
-are stored in plain CSV files in a simple format which is described 
+This project contains the reference data of the aicpLCA application. The data
+are stored in plain CSV files in a simple format which is described
 [here](https://github.com/GreenDelta/olca-modules/blob/master/olca-io/REF_DATA.md).
 
-The project contains a Maven task that directly generates the openLCA reference
-databases from these files just run `mvn package` and it will generate the 
+The project contains a Maven task that directly generates the aicpLCA reference
+databases from these files just run `mvn package` and it will generate the
 databases in the `dist` folder.
 
 The CSV files are equally formatted to track changes via version control:
@@ -14,10 +14,10 @@ The CSV files are equally formatted to track changes via version control:
 * the entries are sorted by the UUID which is the first column of the file
 
 The following Python script can be used to format a file:
-	
+
 ```python
 """
-format openLCA reference data CSV files to track changes via git
+format aicpLCA reference data CSV files to track changes via git
 empty values are currently quoted, see
 http://stackoverflow.com/questions/19315366/csv-writer-in-python-with-custom-quoting
 for custom quoting

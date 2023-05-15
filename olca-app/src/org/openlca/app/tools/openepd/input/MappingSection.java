@@ -46,7 +46,7 @@ class MappingSection {
 		UI.gridLayout(top, 2, 10, 0);
 
 		// method combo
-		var combo = UI.labeledCombo(top, tk, "Mapped openLCA method");
+		var combo = UI.labeledCombo(top, tk, "Mapped aicpLCA method");
 		var methods = dialog.db.getAll(ImpactMethod.class);
 		methods.sort(Comparator.comparing(Labels::name));
 		var withNull = new ArrayList<ImpactMethod>(methods.size() + 1);

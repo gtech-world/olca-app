@@ -36,7 +36,7 @@ public class RcpWindowAdvisor extends WorkbenchWindowAdvisor {
 	public void postWindowOpen() {
 
 		// close old editors that may are still
-		// open after an openLCA crash
+		// open after an aicpLCA crash
 		var config = getWindowConfigurer();
 		if (config != null) {
 			var window = config.getWindow();

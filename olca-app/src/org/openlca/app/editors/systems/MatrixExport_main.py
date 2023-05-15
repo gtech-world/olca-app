@@ -1,5 +1,5 @@
 """
-This script gives some examples for using the openLCA matrix export in Python.
+This script gives some examples for using the aicpLCA matrix export in Python.
 You need to have NumPy and SciPy installed, e.g. via pip
 
   pip install -U numpy scipy

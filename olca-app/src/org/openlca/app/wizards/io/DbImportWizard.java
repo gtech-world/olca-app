@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 import org.zeroturnaround.zip.ZipUtil;
 
 /**
- * Wizards for the import of data from an openLCA database to another openLCA
+ * Wizards for the import of data from an aicpLCA database to another aicpLCA
  * database.
  */
 public class DbImportWizard extends Wizard implements IImportWizard {

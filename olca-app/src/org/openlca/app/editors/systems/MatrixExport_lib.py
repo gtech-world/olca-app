@@ -1,6 +1,6 @@
 """
-This is an example module how you can use the openLCA matrix export from Python.
-It is part of the openLCA source code which is licensed under the Mozilla Public
+This is an example module how you can use the aicpLCA matrix export from Python.
+It is part of the aicpLCA source code which is licensed under the Mozilla Public
 License 2.0 (MPL 2.0; see https://github.com/GreenDelta/olca-app).
 """
 from __future__ import annotations

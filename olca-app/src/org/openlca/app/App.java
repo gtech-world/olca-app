@@ -42,16 +42,16 @@ public class App {
 	}
 
 	/**
-	 * Get the folder where openLCA is installed. This is where our native math
-	 * libraries and the openLCA.ini file are located. On macOS this is the
-	 * folder `openLCA.app/Contents/Eclipse`.
+	 * Get the folder where aicpLCA is installed. This is where our native math
+	 * libraries and the aicpLCA.ini file are located. On macOS this is the
+	 * folder `aicpLCA.app/Contents/Eclipse`.
 	 */
 	public static File getInstallLocation() {
 		URL url = Platform.getInstallLocation().getURL();
 		try {
 			// url.toURI() does not work for URLs with specific characters
 			// which is the case when the application is installed in
-			// folders like C:\Program Files (x86)\openLCA; see
+			// folders like C:\Program Files (x86)\aicpLCA; see
 			// https://community.oracle.com/blogs/kohsuke/2007/04/25/how-convert-javaneturl-javaiofile
 			return new File(url.toURI());
 		} catch (URISyntaxException e) {
@@ -91,7 +91,7 @@ public class App {
 	}
 
 	/**
-	 * Returns the version of the openLCA application.
+	 * Returns the version of the aicpLCA application.
 	 */
 	public static String getVersion() {
 		return RcpActivator.getDefault().getBundle().getVersion().toString();

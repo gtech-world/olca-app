@@ -110,7 +110,7 @@ public class ErrorReporter extends FormDialog {
 					return;
 				var uri = href.toString();
 				if (uri.startsWith("mailto:")) {
-					uri += "?subject=openLCA%20error&body=";
+					uri += "?subject=aicpLCA%20error&body=";
 					uri += URLEncoder.encode(
 							text.getText(), StandardCharsets.US_ASCII)
 							.replace("+", "%20");
@@ -128,7 +128,7 @@ public class ErrorReporter extends FormDialog {
 				+ "<p> If you think this should not happen or if there is "
 				+ "something that we should improve please open an issue "
 				+ "on our <a href='https://github.com/GreenDelta/olca-app'>"
-				+ "openLCA Github repository</a> or send us an "
+				+ "aicpLCA Github repository</a> or send us an "
 				+ "<a href='mailto:error@openlca.org'>email</a>. For "
 				+ "reporting the issue, you can use the template below. "
 				+ "Thanks!</p>"
@@ -141,7 +141,7 @@ public class ErrorReporter extends FormDialog {
 				"Thanks a lot!\n\n" +
 				"# Error description\n" +
 				"\n" +
-				"I tried to ??? but openLCA threw an error.\n" +
+				"I tried to ??? but aicpLCA threw an error.\n" +
 				"\n" +
 				"# Steps to reproduce\n" +
 				"\n" +
@@ -155,13 +155,13 @@ public class ErrorReporter extends FormDialog {
 				"* screen shots ?\n" +
 				"* ...\n" +
 				"\n" +
-				"# openLCA error message\n" +
+				"# aicpLCA error message\n" +
 				"\n" +
 				message +
 				"\n\n" +
 				"# Installation details\n" +
 				"\n" +
-				"* openLCA version: " + App.getVersion() + "\n" +
+				"* aicpLCA version: " + App.getVersion() + "\n" +
 				"* operating system: " + System.getProperty("os.name") + "\n" +
 				"* os architecture: " + System.getProperty("os.arch") + "\n" +
 				"* os version: " + System.getProperty("os.version") + "\n" +

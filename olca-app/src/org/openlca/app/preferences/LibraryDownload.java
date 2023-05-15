@@ -45,7 +45,7 @@ public class LibraryDownload {
 						+ "log file for details.");
 			} else {
 				MsgBox.info("Download finished", "Note that you need to "
-						+ "restart openLCA in order to use "
+						+ "restart aicpLCA in order to use "
 						+ "the downloaded libraries.");
 			}
 		});

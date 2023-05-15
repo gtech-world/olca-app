@@ -56,12 +56,12 @@ public class RcpActivator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		// initialize the openLCA workspace; releases the default location
+		// initialize the aicpLCA workspace; releases the default location
 		// on initialization, thus, it is good to call this once at early
 		// as possible
 		var workspace = Workspace.root();
 		LoggerConfig.setUp();
-		log.info("start openLCA {}, install location={}, workspace={}",
+		log.info("start aicpLCA {}, install location={}, workspace={}",
 				App.getVersion(), App.getInstallLocation(), workspace);
 		WindowLayout.initialize();
 		log.trace("initialize HTML folder");

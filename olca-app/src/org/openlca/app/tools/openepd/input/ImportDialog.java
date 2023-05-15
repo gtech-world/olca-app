@@ -119,7 +119,7 @@ public class ImportDialog extends FormDialog {
 			boolean b = Question.ask("Missing mappings",
 				"Not all of the used impact assessment methods and categories of " +
 					"the openEPD document are mapped to corresponding impact assessment " +
-					"methods and categories in openLCA. These results will be skipped. " +
+					"methods and categories in aicpLCA. These results will be skipped. " +
 					"Do you want to continue?");
 			if (!b) {
 				return;

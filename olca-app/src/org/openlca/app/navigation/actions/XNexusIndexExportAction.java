@@ -34,7 +34,7 @@ import com.google.gson.GsonBuilder;
 
 /**
  * Exports an file with the process meta-data of the currently activated
- * database for the search index in openLCA Nexus (http://nexus.openlca.org).
+ * database for the search index in aicpLCA Nexus (http://nexus.openlca.org).
  */
 class XNexusIndexExportAction extends Action implements INavigationAction {
 

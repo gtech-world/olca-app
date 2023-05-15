@@ -18,11 +18,11 @@ const NAV_CONFIGURATION = [
         navId: 'getting-started',
     },
     {
-        navLabel: "What's new in openLCA 2.0",
+        navLabel: "What's new in aicpLCA 2.0",
         navId: 'whats-new',
     },
     {
-        navLabel: 'Collaboration tool for openLCA ',
+        navLabel: 'Collaboration tool for aicpLCA ',
         navId: 'collaboration-tool',
     },
 
@@ -43,7 +43,7 @@ const NAV_CONFIGURATION = [
         navId: 'certified-training',
     },
     {
-        navLabel: 'Work with openLCA experts',
+        navLabel: 'Work with aicpLCA experts',
         navId: 'experts',
     },
 
@@ -58,41 +58,41 @@ const messages: {
 } = {
     en: {
         'getting-started.text':
-            "<a id=\"openlca\">openLCA</a> is a powerful, "
+            "<a id=\"openlca\">aicpLCA</a> is a powerful, "
             + "<a id=\"opensource\">open source</a>, feature-rich software for "
             + "LCA and Sustainability modelling. "
             + "\nCreate, import existing databases which contain life cycle "
             + "processes, import assessment methods, create your own "
             + "processes, build your own life cycle models, calculate and "
             + "analyse it. These steps are explained on "
-            + "<a id=\"channel\">YouTube</a>, and in the openLCA "
+            + "<a id=\"channel\">YouTube</a>, and in the aicpLCA "
             + "<a id=\"manuals\">handbook</a>.",
         'whats-new.text':
-            "openLCA 2 is a major step forward, with a lot of new features and "
+            "aicpLCA 2 is a major step forward, with a lot of new features and "
             + "usability improvements. \n"
             + "New features include: new maps and "
             + "better regionalised modelling, broader support for various data "
             + "formats, natural modelling on an LCA canvas, libraries, EPDs "
             + "and results as new elements. For usability, the former model "
             + "graph and Sankey diagram are completely redesigned, many "
-            + "editors have been improved, openLCA can now run in dark mode "
+            + "editors have been improved, aicpLCA can now run in dark mode "
             + "and the installation on Mac is easier.",
         'community-forum.text':
-            "Visit <a id=\"forum\">ask.openLCA.org</a> for questions and "
-            + "answers around openLCA",
+            "Visit <a id=\"forum\">ask.aicpLCA.org</a> for questions and "
+            + "answers around aicpLCA",
         'collaboration-tool.text':
             "The <a id=\"collaboration\">LCA Collaboration Server</a> is "
             + "developed for team work in LCA modelling, dataset "
             + "review and distribution. It is very similar to software code "
             + "development and it is inspired by the world-known Git software. "
             + "It is available for free, on the "
-            + "<a id=\"collaboration-download\">openLCA website</a>. "
+            + "<a id=\"collaboration-download\">aicpLCA website</a>. "
             + "GreenDelta also offers support and "
             + "<a id=\"collaboration-hosting\">hosting services</a>.",
         'databases.text':
             "Find a wide range of free and for-purchase databases for LCA and "
             + "sustainability modelling on "
-            + "<a id=\"nexus\">openLCA Nexus</a>, which currently boasts "
+            + "<a id=\"nexus\">aicpLCA Nexus</a>, which currently boasts "
             + "several hundred thousand datasets. If you have data that you "
             + "would like to share with other users, either for free or for a "
             + "fee, please do not hesitate to contact us. We would be more "
@@ -100,18 +100,18 @@ const messages: {
             + "accessible to a broader audience.",
         'case-studies.text':
             "<a id=\"nexus\">Nexus</a> houses a repository of "
-            + "<a id=\"casestudies\">case studies</a> comprising full openLCA "
+            + "<a id=\"casestudies\">case studies</a> comprising full aicpLCA "
             + "models and accompanying reports for documentation purposes."
             + "\nContact us if you like to share your case study, either for "
             + "free or a fee.",
         'certified-training.text':
             "Trainings on LCA, social LCA, Sustainability and of course "
-            + "openLCA are available on a regular basis, provided by "
+            + "aicpLCA are available on a regular basis, provided by "
             + "GreenDelta and also by other certified trainers worldwide. They "
             + "are posted and can be booked on "
             + "<a id=\"trainings\">Nexus</a>.",
         'experts.text':
-           "openLCA is developed by <a id=\"greendelta\">GreenDelta</a> in "
+           "aicpLCA is developed by <a id=\"greendelta\">GreenDelta</a> in "
            + "Berlin, Germany. If you're passionate about making a positive "
            + "impact through your work - whether it's in IT development, data "
            + "development, research, or consultancy - GreenDelta offers "
@@ -141,7 +141,7 @@ const LibHint = (props: Props) => {
     return (
         <p className="nav-info" onClick={() => handleClick()}>
             <img className="info-icon" src="images/info-32.png"></img>
-            Make the calculations in openLCA faster. Click here to know more.
+            Make the calculations in aicpLCA faster. Click here to know more.
         </p>
     );
 };
@@ -255,13 +255,13 @@ const bindLinks = () => {
         ['news', 'https://www.openlca.org/new'],
         ['opensource', 'https://www.openlca.org/open-source/'],
         ['nexus', 'https://nexus.openlca.org/'],
-        ['channel', 'https://www.youtube.com/c/openLCA'],
+        ['channel', 'https://www.youtube.com/c/aicpLCA'],
         ['forum', 'https://ask.openlca.org/'],
         ['manuals', 'https://www.openlca.org/learning'],
         ['greendelta', 'https://www.greendelta.com'],
-        ['twitter', 'https://twitter.com/openLCA'],
+        ['twitter', 'https://twitter.com/aicpLCA'],
         ['blog', 'https://www.openlca.org/blog/'],
-        ['trainings', 'https://nexus.openlca.org/service/openLCA%20Trainings'],
+        ['trainings', 'https://nexus.openlca.org/service/aicpLCA%20Trainings'],
         ['services', 'https://www.openlca.org/helpdesk'],
         ['collaboration', 'https://www.openlca.org/collaboration-server/'],
         ['collaboration-download', 'https://www.openlca.org/download/'],

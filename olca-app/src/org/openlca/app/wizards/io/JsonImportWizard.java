@@ -43,7 +43,7 @@ public class JsonImportWizard extends Wizard implements IImportWizard {
 
 	public JsonImportWizard() {
 		setNeedsProgressMonitor(true);
-		setWindowTitle("openLCA JSON-LD Import");
+		setWindowTitle("aicpLCA JSON-LD Import");
 		setDefaultPageImageDescriptor(
 				Icon.IMPORT_ZIP_WIZARD.descriptor());
 	}
@@ -110,7 +110,7 @@ public class JsonImportWizard extends Wizard implements IImportWizard {
 
 		Page(File zip) {
 			super("JsonImportPage");
-			setTitle("Import an openLCA data package");
+			setTitle("Import an aicpLCA data package");
 			this.zip = zip;
 			setPageComplete(zip != null);
 		}
@@ -127,7 +127,7 @@ public class JsonImportWizard extends Wizard implements IImportWizard {
 						zip = file;
 						setPageComplete(true);
 					})
-					.withTitle("Select a zip file with openLCA data...")
+					.withTitle("Select a zip file with aicpLCA data...")
 					.withExtensions("*.zip")
 					.withSelection(zip)
 					.render(fileComp);

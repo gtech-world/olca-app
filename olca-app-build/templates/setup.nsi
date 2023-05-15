@@ -1,5 +1,5 @@
 
-Name openLCA
+Name aicpLCA
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
@@ -14,7 +14,7 @@ Name openLCA
 !define MULTIUSER_INSTALLMODE_DEFAULT_CURRENTUSER
 !define MULTIUSER_MUI
 !define MULTIUSER_INSTALLMODE_COMMANDLINE
-!define MULTIUSER_INSTALLMODE_INSTDIR openLCA
+!define MULTIUSER_INSTALLMODE_INSTDIR aicpLCA
 !define MULTIUSER_INSTALLMODE_INSTDIR_REGISTRY_KEY "${{REGKEY}}"
 !define MULTIUSER_INSTALLMODE_INSTDIR_REGISTRY_VALUE "Path"
 !define MUI_WELCOMEFINISHPAGE_BITMAP "welcome.bmp"
@@ -27,8 +27,8 @@ Name openLCA
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT SHCTX
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${{REGKEY}}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
-!define MUI_STARTMENUPAGE_DEFAULTFOLDER openLCA
-!define MUI_FINISHPAGE_RUN $INSTDIR\openLCA.exe
+!define MUI_STARTMENUPAGE_DEFAULTFOLDER aicpLCA
+!define MUI_FINISHPAGE_RUN $INSTDIR\aicpLCA.exe
 !define MUI_UNICON "orange-uninstall.ico"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 !define MUI_LANGDLL_REGISTRY_ROOT SHCTX
@@ -99,13 +99,13 @@ FunctionEnd
 
 # Installer attributes
 OutFile setup.exe
-# ALL USERS: InstallDir "$PROGRAMFILES64\openLCA"
-InstallDir "$LOCALAPPDATA\openLCA"
+# ALL USERS: InstallDir "$PROGRAMFILES64\aicpLCA"
+InstallDir "$LOCALAPPDATA\aicpLCA"
 CRCCheck on
 XPStyle on
 ShowInstDetails hide
 VIProductVersion {version}.0
-VIAddVersionKey /LANG=${{LANG_ENGLISH}} ProductName openLCA
+VIAddVersionKey /LANG=${{LANG_ENGLISH}} ProductName aicpLCA
 VIAddVersionKey /LANG=${{LANG_ENGLISH}} ProductVersion "${version}"
 VIAddVersionKey /LANG=${{LANG_ENGLISH}} CompanyName "${{COMPANY}}"
 VIAddVersionKey /LANG=${{LANG_ENGLISH}} CompanyWebsite "${{URL}}"
@@ -116,16 +116,16 @@ VIAddVersionKey /LANG=${{LANG_ENGLISH}} LegalCopyright ""
 ShowUninstDetails hide
 
 # Installer sections
-Section "-openLCA {version}" SEC0000
+Section "-aicpLCA {version}" SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
     File /r openlca\*
     ${{If}} $LANGUAGE = 1031
-        File /r german\openLCA.ini
+        File /r german\aicpLCA.ini
     ${{Else}}
-        File /r english\openLCA.ini
+        File /r english\aicpLCA.ini
     ${{EndIf}}
-    WriteRegStr SHCTX "${{REGKEY}}\Components" "openLCA {version}" 1
+    WriteRegStr SHCTX "${{REGKEY}}\Components" "aicpLCA {version}" 1
 
     ${{If}} $MultiUser.InstallMode == "CurrentUser"
         ${{WriteToFile}} `$INSTDIR\singleuserinstall.mrk` `marker file`
@@ -139,7 +139,7 @@ Section -post SEC0001
     WriteUninstaller $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     SetOutPath $SMPROGRAMS\$StartMenuGroup
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\openLCA.exe
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\aicpLCA.exe
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk" $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_END
     WriteRegStr SHCTX "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayName "$(^Name)"
@@ -166,17 +166,17 @@ done${{UNSECTION_ID}}:
 !macroend
 
 # Uninstaller sections
-Section /o "-un.openLCA {version}" UNSEC0000
-    Delete /REBOOTOK "$INSTDIR\openLCA.exe"
+Section /o "-un.aicpLCA {version}" UNSEC0000
+    Delete /REBOOTOK "$INSTDIR\aicpLCA.exe"
     Delete /REBOOTOK "$INSTDIR\.eclipseproduct"
     RmDir /r /REBOOTOK $INSTDIR
-    DeleteRegValue SHCTX "${{REGKEY}}\Components" "openLCA {version}"
+    DeleteRegValue SHCTX "${{REGKEY}}\Components" "aicpLCA {version}"
 SectionEnd
 
 Section -un.post UNSEC0001
     DeleteRegKey SHCTX "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\$(^UninstallLink).lnk"
-    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\openLCA.lnk"
+    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\aicpLCA.lnk"
     Delete /REBOOTOK $INSTDIR\uninstall.exe
     DeleteRegValue SHCTX "${{REGKEY}}" StartMenuGroup
     DeleteRegValue SHCTX "${{REGKEY}}" Path
@@ -230,7 +230,7 @@ Function un.onInit
     !insertmacro MUI_STARTMENU_GETFOLDER Application $StartMenuGroup
     !insertmacro MUI_UNGETLANGUAGE
     !insertmacro MULTIUSER_UNINIT
-    !insertmacro SELECT_UNSECTION "openLCA {version}" ${{UNSEC0000}}
+    !insertmacro SELECT_UNSECTION "aicpLCA {version}" ${{UNSEC0000}}
 FunctionEnd
 
 # Installer Language Strings

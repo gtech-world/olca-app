@@ -1,9 +1,9 @@
-/* The 'Dark' theme of the openLCA. */
+/* The 'Dark' theme of the aicpLCA. */
 /* colors from https://draculatheme.com/contribute */
 
 /* basic attributes and graph settings */
 :root {
-  --version: '2';         /* the version of openLCA */
+  --version: '2';         /* the version of aicpLCA */
   --name: 'Dark';         /* the name of the theme */
   --mode: 'dark';         /* this is a dark theme */
 }

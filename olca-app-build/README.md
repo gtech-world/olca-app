@@ -4,8 +4,8 @@ wizard. Click on the `olca-app` project and then on `Export...` from the context
 menu. Select `Plug-in Development > Eclipse Product` from the export wizard and
 select the following options in the export dialog:
 
-* Configuration: `/olca-app/openLCA.product` (should be the default)
-* Root directory: `openLCA`
+* Configuration: `/olca-app/aicpLCA.product` (should be the default)
+* Root directory: `aicpLCA`
 * Synchronize before exporting: yes [x]
 * Destination directory: choose the `olca-app-build/build` folder of this project
 * Generate p2 repository: no [ ] (would be just overhead)
@@ -57,7 +57,7 @@ and native libraries if these are missing.
 #### Prepare the independent distribution of the Mac app (`.dmg`) (only on macOS)
 
 In order to pass the Gatekeeper protection, the Mac bundle freshly packaged has
-to be signed in depth with an Apple Development certificate, notarized and 
+to be signed in depth with an Apple Development certificate, notarized and
 stapled. When testing, one should make a test copy after running the script.
 
 Prerequisites:
@@ -71,12 +71,12 @@ Prerequisites:
    * Add the _Developer ID Application Certificate_ in `Manage Certificates...`.
    * Get the name of the certificate:
       * Open __Keychain Access__,
-      * In `login > My Certificates` copy the full name `Developer ID 
+      * In `login > My Certificates` copy the full name `Developer ID
         Application: GreenDelta GmbH (<code>)`.
 
 2. Set up the `notarytool`credentials:
    * Go to https://appleid.apple.com/ and sign in with the Green Delta Apple ID.
-   * Select Application password and create a new password named 
+   * Select Application password and create a new password named
      `notarytool-<pseudo>` and copy it.
    * Add the password to your system:
      * Run the following command `xcrun notarytool store-credentials`:
@@ -87,7 +87,7 @@ Prerequisites:
      * Developer Team ID: <code of the certificate (cf. `Developer ID
        Application: GreenDelta GmbH (<code>)`)>
 
-3. Run the following command to sign, notarized, staple the app and embellish 
+3. Run the following command to sign, notarized, staple the app and embellish
   the disk image:
 
     ```bash

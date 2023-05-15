@@ -14,8 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Reads and writes values from and to the openLCA.ini file which is located in
- * the installation directory of openLCA. Writing is not possible when openLCA
+ * Reads and writes values from and to the aicpLCA.ini file which is located in
+ * the installation directory of aicpLCA. Writing is not possible when aicpLCA
  * is installed in a read-only folder.
  */
 class ConfigIniFile {
@@ -35,7 +35,7 @@ class ConfigIniFile {
 			return parseFile(iniFile);
 		} catch (Exception e) {
 			Logger log = LoggerFactory.getLogger(ConfigIniFile.class);
-			log.error("failed to read openLCA.ini file", e);
+			log.error("failed to read aicpLCA.ini file", e);
 			return new ConfigIniFile();
 		}
 	}
@@ -131,7 +131,7 @@ class ConfigIniFile {
 
 		} catch (Exception e) {
 			Logger log = LoggerFactory.getLogger(ConfigIniFile.class);
-			log.error("failed to write openLCA.ini file", e);
+			log.error("failed to write aicpLCA.ini file", e);
 		}
 	}
 
@@ -148,7 +148,7 @@ class ConfigIniFile {
 
 	private static File getIniFile() {
 		var dir = App.getInstallLocation();
-		return new File(dir, "openLCA.ini");
+		return new File(dir, "aicpLCA.ini");
 	}
 
 	private static ConfigIniFile parseFile(File iniFile) throws Exception {

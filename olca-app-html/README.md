@@ -1,6 +1,6 @@
 # olca-app-html
 This folder contains the sources of the HTML and JavaScript files that are
-packaged with openLCA.
+packaged with aicpLCA.
 
 ## Build
 You need to have Node.js with npm installed. With this, navigate to the

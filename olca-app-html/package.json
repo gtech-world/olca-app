@@ -1,7 +1,7 @@
 {
   "name": "olca-html-ts",
   "version": "1.0.0",
-  "description": "HTML pages of the openLCA application",
+  "description": "HTML pages of the aicpLCA application",
   "main": "index.js",
   "scripts": {
     "prebuild": "node scripts/prepare-fonts.js",

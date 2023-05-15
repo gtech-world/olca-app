@@ -4,9 +4,9 @@ Bundle-Name: olca-app
 Automatic-Module-Name: olca-app
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-SymbolicName: olca-app;singleton:=true
-Bundle-Version: 2.0.0.beta3
+Bundle-Version: 1.0.0
 Bundle-Activator: org.openlca.app.rcp.RcpActivator
-Bundle-Vendor: openLCA.org
+Bundle-Vendor: aicpLCA.org
 Eclipse-BundleShape: dir
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

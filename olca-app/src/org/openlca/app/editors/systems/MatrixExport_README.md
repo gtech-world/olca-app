@@ -1,6 +1,6 @@
-# The openLCA matrix export format
+# The aicpLCA matrix export format
 
-With the openLCA matrix export you can export your product system into a set of
+With the aicpLCA matrix export you can export your product system into a set of
 platform independent matrices for further processing with other tools.
 Currently, the following export formats are supported:
 

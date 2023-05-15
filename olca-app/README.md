@@ -1,6 +1,6 @@
 ## Updating the target platform
 The target platform is the Eclipse RPC platform with the plugins
-and features on which the openLCA desktop application runs. It
+and features on which the aicpLCA desktop application runs. It
 is defined in the `platform.target` file. We update the platform
 from time to time in order to get the latest features and bug-fixes.
 The platform components are fetched from the respective Eclipse
@@ -21,10 +21,10 @@ https://download.eclipse.org/eclipse/updates/4.21/
 ```
 
 This is the URL of the respective repository `location` in the
-platform definition:  
+platform definition:
 
-``` 
-<location 
+```
+<location
   includeAllPlatforms="true"
   includeConfigurePhase="true"
   includeMode="slicer"

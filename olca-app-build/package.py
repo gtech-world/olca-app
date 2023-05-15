@@ -186,9 +186,9 @@ class BuildDir:
     @property
     def app_dir(self) -> Path:
         if self.osa.is_mac():
-            return self.root / "openLCA/openLCA.app"
+            return self.root / "aicpLCA/aicpLCA.app"
         else:
-            return self.root / "openLCA"
+            return self.root / "aicpLCA"
 
     @property
     def about_dir(self) -> Path:
@@ -200,12 +200,12 @@ class BuildDir:
     @property
     def jre_dir(self) -> Path:
         if self.osa.is_mac():
-            return self.root / "openLCA/openLCA.app/Contents/Eclipse/jre"
+            return self.root / "aicpLCA/aicpLCA.app/Contents/Eclipse/jre"
         else:
             return self.app_dir / "jre"
 
     @property
-    def olca_plugin_dir(self) -> Path | None:
+    def olca_plugin_dir(self):
         if self.osa.is_mac():
             plugin_dir = self.app_dir / "Contents/Eclipse/plugins"
         else:
@@ -251,7 +251,7 @@ class BuildDir:
         if self.osa.is_win():
             Template.apply(
                 PROJECT_DIR / "templates/openLCA_win.ini",
-                self.app_dir / "openLCA.ini",
+                self.app_dir / "aicpLCA.ini",
                 encoding="iso-8859-1",
                 lang="en",
             )
@@ -259,7 +259,7 @@ class BuildDir:
         if self.osa.is_linux():
             shutil.copy2(
                 PROJECT_DIR / "templates/openLCA_linux.ini",
-                self.app_dir / "openLCA.ini",
+                self.app_dir / "aicpLCA.ini",
             )
             bins = ["ipc-server.sh", "grpc-server.sh"]
         if len(bins) > 0:
@@ -273,7 +273,7 @@ class BuildDir:
                 shutil.copy2(bin_source, bin_target)
 
         # build the package
-        pack_name = f"openLCA_{self.osa.value}_{version.app_suffix}"
+        pack_name = f"aicpLCA_{self.osa.value}_{version.app_suffix}"
         print(f"  create package {pack_name}")
         pack = Build.dist_dir() / pack_name
         if self.osa == OsArch.WINDOWS_X64:
@@ -439,7 +439,7 @@ class MacDir:
     def arrange(build_dir: BuildDir):
 
         # create the folder structure
-        app_root = build_dir.root / "openLCA"
+        app_root = build_dir.root / "aicpLCA"
         app_dir = build_dir.app_dir
         eclipse_dir = app_dir / "Contents/Eclipse"
         macos_dir = app_dir / "Contents/MacOS"
@@ -452,14 +452,14 @@ class MacDir:
             (app_root / "plugins", eclipse_dir),
             (app_root / ".eclipseproduct", eclipse_dir),
             (app_root / "Resources", app_dir / "Contents"),
-            (app_root / "MacOS/openLCA", macos_dir / "openLCA"),
+            (app_root / "MacOS/aicpLCA", macos_dir / "aicpLCA"),
         ]
         for (source, target) in moves:
             if source.exists():
                 shutil.move(str(source), str(target))
 
         resources = PROJECT_DIR / "resources"
-        shutil.copy2(resources / "openLCA.entitlements", app_dir / "Contents")
+        shutil.copy2(resources / "aicpLCA.entitlements", app_dir / "Contents")
         MacDir.add_info_plist(app_dir / "Contents/Info.plist")
 
         # create the ini file
@@ -467,8 +467,8 @@ class MacDir:
         launcher_jar = next(plugins_dir.glob("*launcher*.jar")).name
         launcher_lib = next(plugins_dir.glob("*launcher.cocoa.macosx*")).name
         Template.apply(
-            PROJECT_DIR / "templates/openLCA_mac.ini",
-            eclipse_dir / "openLCA.ini",
+            PROJECT_DIR / "templates/aicpLCA_mac.ini",
+            eclipse_dir / "aicpLCA.ini",
             launcher_jar=launcher_jar,
             launcher_lib=launcher_lib,
         )
@@ -476,7 +476,7 @@ class MacDir:
         # clean up
         delete(app_root / "MacOS")
         delete(app_root / "Info.plist")
-        delete(macos_dir / "openLCA.ini")
+        delete(macos_dir / "aicpLCA.ini")
 
     @staticmethod
     def add_info_plist(path: Path):
@@ -550,7 +550,7 @@ class Nsis:
         en_dir.mkdir(parents=True, exist_ok=True)
         Template.apply(
             PROJECT_DIR / "templates/openLCA_win.ini",
-            en_dir / "openLCA.ini",
+            en_dir / "aicpLCA.ini",
             encoding="iso-8859-1",
             lang="en",
         )
@@ -558,7 +558,7 @@ class Nsis:
         de_dir.mkdir(parents=True, exist_ok=True)
         Template.apply(
             PROJECT_DIR / "templates/openLCA_win.ini",
-            de_dir / "openLCA.ini",
+            de_dir / "aicpLCA.ini",
             encoding="iso-8859-1",
             lang="de",
         )
