@@ -18,7 +18,7 @@ const NAV_CONFIGURATION = [
         navId: 'getting-started',
     },
     {
-        navLabel: "What's new in aicpLCA 2.0",
+        navLabel: "What's new in aicpLCA 1.0",
         navId: 'whats-new',
     },
     {
@@ -87,7 +87,7 @@ const messages: {
             + "development and it is inspired by the world-known Git software. "
             + "It is available for free, on the "
             + "<a id=\"collaboration-download\">aicpLCA website</a>. "
-            + "GreenDelta also offers support and "
+            + "GTech also offers support and "
             + "<a id=\"collaboration-hosting\">hosting services</a>.",
         'databases.text':
             "Find a wide range of free and for-purchase databases for LCA and "
@@ -107,15 +107,15 @@ const messages: {
         'certified-training.text':
             "Trainings on LCA, social LCA, Sustainability and of course "
             + "aicpLCA are available on a regular basis, provided by "
-            + "GreenDelta and also by other certified trainers worldwide. They "
+            + "GTech and also by other certified trainers worldwide. They "
             + "are posted and can be booked on "
             + "<a id=\"trainings\">Nexus</a>.",
         'experts.text':
-           "aicpLCA is developed by <a id=\"greendelta\">GreenDelta</a> in "
-           + "Berlin, Germany. If you're passionate about making a positive "
+           "aicpLCA is developed by <a id=\"greendelta\">GTech</a> in "
+           + "Hong Kong. If you're passionate about making a positive "
            + "impact through your work - whether it's in IT development, data "
-           + "development, research, or consultancy - GreenDelta offers "
-           + "various open positions (available in German or English). We also "
+           + "development, research, or consultancy - GTech offers "
+           + "various open positions. We also "
            + "welcome applications for internships. Check out our current "
            + "opportunities <a id=\"openpositions\">here</a>.",
     },
@@ -150,8 +150,8 @@ const Navigation = (props: Props) => {
     return (
         <div className="navigation">
             <a
-                href="http://www.openlca.org"
-                title="http://www.openlca.org"
+                href="https://gtech.world"
+                title="https://gtech.world"
                 className="img-link"
             >
                 <img
@@ -208,8 +208,8 @@ const Footer = () => {
         <div className="footer-container">
             <a
                 className="gd-logo"
-                href="http://www.greendelta.com"
-                title="http://www.greendelta.com"
+                href="https://gtech.world"
+                title="https://gtech.world"
             />
         </div>
     );

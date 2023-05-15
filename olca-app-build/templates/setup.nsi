@@ -4,8 +4,8 @@ Name aicpLCA
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
 !define VERSION {version}
-!define COMPANY "GreenDelta GmbH"
-!define URL http://www.greendelta.com
+!define COMPANY "GTech International Limited"
+!define URL https://gtech.world
 
 # MultiUser Symbol Definitions
 !define MULTIUSER_EXECUTIONLEVEL Admin

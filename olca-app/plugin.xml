@@ -578,7 +578,7 @@
 				name="aicpLCA">
 			<property
 					name="windowImages"
-					value="icons/logo/16_32bit.png,icons/logo/32_32bit.png,icons/logo/48_32bit.png,icons/logo/64.png,icons/logo/128.png">
+					value="icons/logo/16_32bit.png,icons/logo/32_32bit.png,icons/logo/48_32bit.png,icons/logo/64.png,icons/logo/128.png,icons/logo/256.png">
 			</property>
 			<property
          name="aboutText"
@@ -609,6 +609,10 @@
    <property
          name="startupProgressRect"
          value="0,437,586,5">
+   </property>
+   <property
+         name="preferenceCustomization"
+         value="plugin_customization.ini">
    </property>
 		</product>
 	</extension>

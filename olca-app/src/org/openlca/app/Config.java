@@ -38,6 +38,6 @@ public final class Config {
 	/**
 	 * Link to the aicpLCA online help.
 	 */
-	public static final String HELP_URL = "http://www.openlca.org/manuals";
+	public static final String HELP_URL = "https://gtech.world/manuals";
 
 }

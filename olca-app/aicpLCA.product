@@ -27,7 +27,7 @@ Visit https://gtech.world
       </vmArgsMac>
    </launcherArgs>
 
-   <windowImages i16="/olca-app/icons/logo/16_32bit.png" i32="/olca-app/icons/logo/32_32bit.png" i48="/olca-app/icons/logo/48_32bit.png" i64="/olca-app/icons/logo/64.png" i128="/olca-app/icons/logo/128.png"/>
+   <windowImages i16="/olca-app/icons/logo/16_32bit.png" i32="/olca-app/icons/logo/32_32bit.png" i48="/olca-app/icons/logo/48_32bit.png" i64="/olca-app/icons/logo/64.png" i128="/olca-app/icons/logo/128.png" i256="/olca-app/icons/logo/256.png"/>
 
    <splash
       location="olca-app"
@@ -47,7 +47,6 @@ Visit https://gtech.world
    <vm>
       <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17</windows>
    </vm>
-
 
    <plugins>
       <plugin id="com.ibm.icu"/>
