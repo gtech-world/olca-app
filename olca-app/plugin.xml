@@ -847,7 +847,7 @@
 
 	<extension
 			point="org.eclipse.ui.exportWizards">
-		<category
+		<!-- <category
 				id="export.category.ecospold"
 				name="EcoSpold">
 		</category>
@@ -858,12 +858,12 @@
 		<category
 				id="export.category.ilcd"
 				name="ILCD">
-		</category>
+		</category> -->
 		<category
 				id="openlca.export.category"
 				name="aicpLCA">
 		</category>
-		<category
+		<!-- <category
 				id="export.category.simapro"
 				name="SimaPro CSV">
 		</category>
@@ -880,7 +880,7 @@
 				icon="icons/file/excel.png"
 				id="wizard.export.excel.process"
 				name="%Processes">
-		</wizard>
+		</wizard> -->
 		<!--
 		<wizard
 				 category="export.category.ecospold"
@@ -893,7 +893,7 @@
 			</description>
 	 </wizard>
 	 -->
-		<wizard
+		<!-- <wizard
 				category="export.category.ecospold"
 				class="org.openlca.app.wizards.io.EcoSpold01ExportMethodWizard"
 				icon="icons/file/xml_es1.png"
@@ -913,7 +913,7 @@
 				icon="icons/network.png"
 				id="org.openlca.ilcd.network.ExportWizard"
 				name="%ILCDNetworkExport">
-		</wizard>
+		</wizard> -->
 		<wizard
 				category="openlca.export.category"
 				class="org.openlca.app.wizards.io.JsonExportWizard"
@@ -922,7 +922,7 @@
 				name="JSON-LD">
 		</wizard>
 
-		<wizard
+		<!-- <wizard
 				category="export.category.simapro"
 				id="org.openlca.app.wizards.io.SimaProCsvExportWizard"
 				class="org.openlca.app.wizards.io.SimaProProcessExportWizard"
@@ -942,7 +942,7 @@
 			<description>
 				Export LCIA methods to a SimaPro CSV file
 			</description>
-		</wizard>
+		</wizard> -->
 	</extension>
 
 	<extension

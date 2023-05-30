@@ -40,10 +40,11 @@ public class Database {
 
 	public static IDatabase activate(DatabaseConfig config) {
 		try {
+			Logger log = LoggerFactory.getLogger(Database.class);
+			System.out.println("conDir:" + Workspace.dbDir().toString());
 			database = config.connect(Workspace.dbDir());
 			Cache.create(database);
 			Database.config = config;
-			Logger log = LoggerFactory.getLogger(Database.class);
 			log.trace("activated database {} with version{}",
 					database.getName(), database.getVersion());
 			Repository.open(Repository.gitDir(database.getName()));

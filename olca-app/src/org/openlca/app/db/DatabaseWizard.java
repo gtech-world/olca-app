@@ -109,9 +109,10 @@ public class DatabaseWizard extends Wizard {
 					+ dir + " already exists");
 				return;
 			}
-
+			System.out.println("dir:" + dir.toString());
 			// extract the database template and run possible
 			// upgrades if required
+
 			content.extract(dir);
 			var db = Database.activate(config);
 			if (db != null) {

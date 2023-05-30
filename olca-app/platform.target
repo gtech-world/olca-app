@@ -32,6 +32,5 @@
 </locations>
 	<environment>
 		<arch>x86_64</arch>
-		<os>macosx</os>
 	</environment>
 </target>
