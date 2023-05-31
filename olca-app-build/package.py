@@ -90,23 +90,25 @@ class Zip:
         if system != "windows":
             Zip.__zip = Zip(False)
             return Zip.__zip
-        z7 = Zip.z7()
-        if os.path.exists(z7):
-            Zip.__zip = Zip(True)
-            return Zip.__zip
+        # z7 = Zip.z7()
+        # if os.path.exists(z7):
+        #     Zip.__zip = Zip(True)
+        #     return Zip.__zip
 
         # try to fetch a version 7zip version from the web
-        url = "https://www.7-zip.org/a/7za920.zip"
-        print(
-            f"WARNING no 7zip version found under {z7}, will download an OLD"
-            f" version from {url}"
-        )
-        z7_dir = PROJECT_DIR / "tools/7zip"
-        z7_dir.mkdir(parents=True, exist_ok=True)
-        z7_zip = z7_dir / "7zip.zip"
-        urllib.request.urlretrieve(url, z7_zip)
-        shutil.unpack_archive(z7_zip, z7_dir)
-        Zip.__zip = Zip(os.path.exists(z7))
+        # url = "https://www.7-zip.org/a/7za920.zip"
+        # print(
+        #     f"WARNING no 7zip version found under {z7}, will download an OLD"
+        #     f" version from {url}"
+        # )
+        # z7_dir = PROJECT_DIR / "tools/7zip"
+        # z7_dir.mkdir(parents=True, exist_ok=True)
+        # z7_zip = z7_dir / "7zip.zip"
+        # urllib.request.urlretrieve(url, z7_zip)
+        # shutil.unpack_archive(z7_zip, z7_dir)
+        # Zip.__zip = Zip(os.path.exists(z7))
+        # return Zip.__zip
+        Zip.__zip = Zip(False)
         return Zip.__zip
 
     @staticmethod
@@ -115,7 +117,7 @@ class Zip:
         if not target_folder.exists():
             target_folder.mkdir(parents=True, exist_ok=True)
         if Zip.get().is_z7:
-            subprocess.call([Zip.z7(), "x", zip_file, f"-o{target_folder}"])
+            subprocess.call([str(Zip.z7()), "x", str(zip_file), f"-o{target_folder}"])
         else:
             shutil.unpack_archive(zip_file, target_folder)
 
@@ -137,9 +139,9 @@ class Zip:
             tar = base.with_suffix(".tar")
             gz = base.with_suffix(".tar.gz")
             subprocess.call(
-                [Zip.z7(), "a", "-ttar", str(tar), folder.as_posix() + "/*"]
+                [str(Zip.z7()), "a", "-ttar", str(tar), str( folder.as_posix() + "/*")]
             )
-            subprocess.call([Zip.z7(), "a", "-tgzip", str(gz), str(tar)])
+            subprocess.call([str(Zip.z7()), "a", "-tgzip", str(gz), str(tar)])
             os.remove(tar)
         else:
             shutil.make_archive(str(base), "gztar", str(folder))
@@ -250,7 +252,7 @@ class BuildDir:
         bins: list[str] = []
         if self.osa.is_win():
             Template.apply(
-                PROJECT_DIR / "templates/openLCA_win.ini",
+                PROJECT_DIR / "templates/aicpLCA_win.ini",
                 self.app_dir / "aicpLCA.ini",
                 encoding="iso-8859-1",
                 lang="en",
@@ -258,7 +260,7 @@ class BuildDir:
             bins = ["ipc-server.cmd", "grpc-server.cmd"]
         if self.osa.is_linux():
             shutil.copy2(
-                PROJECT_DIR / "templates/openLCA_linux.ini",
+                PROJECT_DIR / "templates/aicpLCA_linux.ini",
                 self.app_dir / "aicpLCA.ini",
             )
             bins = ["ipc-server.sh", "grpc-server.sh"]
@@ -549,7 +551,7 @@ class Nsis:
         en_dir = build_dir.root / "english"
         en_dir.mkdir(parents=True, exist_ok=True)
         Template.apply(
-            PROJECT_DIR / "templates/openLCA_win.ini",
+            PROJECT_DIR / "templates/aicpLCA_win.ini",
             en_dir / "aicpLCA.ini",
             encoding="iso-8859-1",
             lang="en",
@@ -557,19 +559,19 @@ class Nsis:
         de_dir = build_dir.root / "german"
         de_dir.mkdir(parents=True, exist_ok=True)
         Template.apply(
-            PROJECT_DIR / "templates/openLCA_win.ini",
+            PROJECT_DIR / "templates/aicpLCA_win.ini",
             de_dir / "aicpLCA.ini",
             encoding="iso-8859-1",
             lang="de",
         )
 
         # create the installer
-        subprocess.call([exe, build_dir.root / "setup.nsi"])
+        subprocess.call([str(exe), str(build_dir.root / "setup.nsi")])
         dist_dir = PROJECT_DIR / "build/dist"
         if not dist_dir.exists():
             dist_dir.mkdir(parents=True, exist_ok=True)
         app_file = (
-            dist_dir / f"openLCA_{build_dir.osa.name}"
+            dist_dir / f"aicpLCA_{build_dir.osa.name}"
             f"_{version.app_suffix}.exe"
         )
         shutil.move(build_dir.root / "setup.exe", app_file)

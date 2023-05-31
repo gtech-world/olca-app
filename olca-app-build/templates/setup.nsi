@@ -119,7 +119,7 @@ ShowUninstDetails hide
 Section "-aicpLCA {version}" SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /r openlca\*
+    File /r aicpLCA\*
     ${{If}} $LANGUAGE = 1031
         File /r german\aicpLCA.ini
     ${{Else}}
