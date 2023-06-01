@@ -1,9 +1,9 @@
 #!/bin/bash
 
-DIST="openLCA_macOS_x64_2.0.0.beta3_$(date '+%Y-%m-%d')"
-BUNDLE_ID="org.openlca.app"
-APP_DMG="build/tmp/macosx.cocoa.x86_64/openLCA_dmg/aicpLCA.app"
-APP_PKG="build/tmp/macosx.cocoa.x86_64/openLCA_pkg/aicpLCA.app"
+DIST="aicpLCA_macOS_x64_1.0.0_$(date '+%Y-%m-%d')"
+BUNDLE_ID="org.aicplca.app"
+APP_DMG="build/tmp/macosx.cocoa.x86_64/aicpLCA_dmg/aicpLCA.app"
+APP_PKG="build/tmp/macosx.cocoa.x86_64/aicpLCA_pkg/aicpLCA.app"
 APP_UNSIGNED="build/macosx.cocoa.x86_64/aicpLCA/aicpLCA.app"
 DMG="build/dist/${DIST}.dmg"
 PKG="build/dist/${DIST}.pkg"
