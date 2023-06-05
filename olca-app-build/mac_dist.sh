@@ -224,6 +224,9 @@ while [[ "${1:0:1}" = "-" ]]; do
   esac
 done
 
+DEV_APP_ID="Developer ID Application: Fu Gavin (9835AZG46U)"
+KEYCHAIN="notarytool-aicpLCA"
+echo "type: $1"
 
 if [ -z "$KEYCHAIN" ]; then
     echo "Missing keychain argument. Run $0 --help to see usage."
@@ -243,13 +246,13 @@ elif [ -z "$1" ]; then
   usage
 fi
 
-if [ "$1" = "pkg" ] || [ "$1" = "upload" ]; then
-  while true; do
-      read -rp "Do you wish to upload aicpLCA to the App Store? (Y/n)" answer
-      case $answer in
-          Y ) upload_pkg; break;;
-          n ) exit;;
-          * ) echo "Please answer Y or n.";;
-      esac
-  done
-fi
+# if [ "$1" = "pkg" ] || [ "$1" = "upload" ]; then
+#   while true; do
+#       read -rp "Do you wish to upload aicpLCA to the App Store? (Y/n)" answer
+#       case $answer in
+#           Y ) upload_pkg; break;;
+#           n ) exit;;
+#           * ) echo "Please answer Y or n.";;
+#       esac
+#   done
+# fi
