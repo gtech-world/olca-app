@@ -13,40 +13,51 @@ type Props = {
 
 
 const NAV_CONFIGURATION = [
+//     {
+//         navLabel: 'Getting Started',
+//         navId: 'getting-started',
+//     },
+//     {
+//         navLabel: "What's new in aicpLCA 1.0",
+//         navId: 'whats-new',
+//     },
+//     {
+//         navLabel: 'Collaboration tool for aicpLCA ',
+//         navId: 'collaboration-tool',
+//     },
+//
+//     {
+//         navLabel: 'Community forum',
+//         navId: 'community-forum',
+//     },
+//     {
+//         navLabel: 'Comprehensive database',
+//         navId: 'databases',
+//     },
+//     {
+//         navLabel: 'Case studies',
+//         navId: 'case-studies',
+//     },
+//     {
+//         navLabel: 'Certified trainings',
+//         navId: 'certified-training',
+//     },
+//     {
+//         navLabel: 'Work with aicpLCA experts',
+//         navId: 'experts',
+//     },
     {
-        navLabel: 'Getting Started',
-        navId: 'getting-started',
+        navLabel: '关于A-LCA工具',
+        navId: 'about-a-lca',
     },
     {
-        navLabel: "What's new in aicpLCA 1.0",
-        navId: 'whats-new',
+        navLabel: '开始使用之前',
+        navId: 'before-start',
     },
     {
-        navLabel: 'Collaboration tool for aicpLCA ',
-        navId: 'collaboration-tool',
-    },
-
-    {
-        navLabel: 'Community forum',
-        navId: 'community-forum',
-    },
-    {
-        navLabel: 'Comprehensive database',
-        navId: 'databases',
-    },
-    {
-        navLabel: 'Case studies',
-        navId: 'case-studies',
-    },
-    {
-        navLabel: 'Certified trainings',
-        navId: 'certified-training',
-    },
-    {
-        navLabel: 'Work with aicpLCA experts',
-        navId: 'experts',
-    },
-
+        navLabel: '获得技术支持',
+        navId: 'support',
+    }
 ];
 
 type SupportedLanguages = 'en' | 'de';
@@ -118,6 +129,14 @@ const messages: {
            + "various open positions. We also "
            + "welcome applications for internships. Check out our current "
            + "opportunities <a id=\"openpositions\">here</a>.",
+        'about-a-lca.text':
+            "A-LCA是<a id=\"aicp\">汽车行业双碳平台（AICP）</a>提供的专业生命周期评价建模（LCA）工具。A-LCA提供了基于通用生命周期评价框架的建模功能，并帮助用户在一致的方法论和参考数据基础上完成建模。A-LCA建模是产品碳足迹以及多种产品环境声明所必须的基础工作。",
+        'before-start.text':
+            "在开始使用A-LCA之前，请确保您下载并导入了工具所要求的参考数据库。<br/>"
+            + "请点击此处下载：<a id=\"lci-base-down\">LCI参考数据库</a><br/>"
+            + "请点击此处下载：<a id=\"lcia-method-down\">LCIA Method库</a>",
+        'support.text':
+            "您可以前往<a id=\"aicphome\">AICP官方网站</a>或者联系AICP平台技术供应商邮箱info@gtech.world询问以获得更多支持。",
     },
 };
 
@@ -159,9 +178,9 @@ const Navigation = (props: Props) => {
                     src="images/logo_start_page.png"
                 />
             </a>
-            <div className="nav-info-container">
+{/*             <div className="nav-info-container">
                 <LibHint {...props} />
-            </div>
+            </div> */}
         </div>
     );
 };
@@ -216,7 +235,7 @@ const Footer = () => {
 };
 
 const Page = (props: Props) => {
-    const [activeMenu, setActiveMenu] = useState('getting-started');
+    const [activeMenu, setActiveMenu] = useState('about-a-lca');
 
     useEffect(() => {
         bindLinks();
@@ -242,7 +261,7 @@ const Page = (props: Props) => {
                     </section>
                 </section>
                 <footer className="footer">
-                    <Footer />
+                   {/* <Footer />*/}
                 </footer>
             </div>
         </div>
@@ -251,6 +270,10 @@ const Page = (props: Props) => {
 
 const bindLinks = () => {
     const config = [
+        ['aicp', 'https://aicp.gtech-cn.co'],
+        ['aicphome', 'https://aicp.gtech-cn.co'],
+        ['lci-base-down', 'https://gtech-lca-1317970565.cos.ap-shanghai.myqcloud.com/LCA_ELCD_3_2.zolca'],
+        ['lcia-method-down', 'https://gtech-lca-1317970565.cos.ap-shanghai.myqcloud.com/LCIA_Methods_Package.zolca'],
         ['openlca', 'https://www.openlca.org/'],
         ['news', 'https://www.openlca.org/new'],
         ['opensource', 'https://www.openlca.org/open-source/'],
@@ -281,6 +304,7 @@ const bindLinks = () => {
         if (!elem) {
             return;
         }
+
         if (elem.getAttribute('href')) {
             // avoid adding multiple event handlers
             return;
