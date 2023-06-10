@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIST="aicpLCA_macOS_x64_1.0.1_$(date '+%Y-%m-%d')"
+DIST="aicpLCA_macOS_x64_1.0.2_$(date '+%Y-%m-%d')"
 BUNDLE_ID="org.aicplca.app"
 APP_DMG="build/tmp/macosx.cocoa.x86_64/aicpLCA_dmg/aicpLCA.app"
 APP_PKG="build/tmp/macosx.cocoa.x86_64/aicpLCA_pkg/aicpLCA.app"

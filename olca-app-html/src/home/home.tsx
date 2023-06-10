@@ -133,8 +133,7 @@ const messages: {
             "A-LCA是<a id=\"aicp\">汽车行业双碳平台（AICP）</a>提供的专业生命周期评价建模（LCA）工具。A-LCA提供了基于通用生命周期评价框架的建模功能，并帮助用户在一致的方法论和参考数据基础上完成建模。A-LCA建模是产品碳足迹以及多种产品环境声明所必须的基础工作。",
         'before-start.text':
             "在开始使用A-LCA之前，请确保您下载并导入了工具所要求的参考数据库。<br/>"
-            + "请点击此处下载：<a id=\"lci-base-down\">LCI参考数据库</a><br/>"
-            + "请点击此处下载：<a id=\"lcia-method-down\">LCIA Method库</a>",
+            + "<a id=\"lci-down\">请点击此处下载</a><br/>",
         'support.text':
             "您可以前往<a id=\"aicphome\">AICP官方网站</a>或者联系AICP平台技术供应商邮箱info@gtech.world询问以获得更多支持。",
     },
@@ -272,8 +271,7 @@ const bindLinks = () => {
     const config = [
         ['aicp', 'https://aicp.gtech-cn.co'],
         ['aicphome', 'https://aicp.gtech-cn.co'],
-        ['lci-base-down', 'https://gtech-lca-1317970565.cos.ap-shanghai.myqcloud.com/LCA_ELCD_3_2.zolca'],
-        ['lcia-method-down', 'https://gtech-lca-1317970565.cos.ap-shanghai.myqcloud.com/LCIA_Methods_Package.zolca'],
+        ['lci-down', 'https://github.com/gtech-world/olca-app/releases/latest'],
         ['openlca', 'https://www.openlca.org/'],
         ['news', 'https://www.openlca.org/new'],
         ['opensource', 'https://www.openlca.org/open-source/'],
