@@ -880,6 +880,7 @@ public class M extends NLS {
 	public static String StopIPCInfo;
 	public static String SubCategory;
 	public static String SubgroupByProcesses;
+	public static String SyncDB;
 	public static String Synonyms;
 	public static String SystemDefinesUncertainties;
 	public static String SystemProcess;

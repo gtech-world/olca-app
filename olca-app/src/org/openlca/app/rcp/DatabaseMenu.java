@@ -22,6 +22,7 @@ import org.openlca.app.navigation.actions.db.DbExportAction;
 import org.openlca.app.navigation.actions.db.DbPropertiesAction;
 import org.openlca.app.navigation.actions.db.DbRenameAction;
 import org.openlca.app.navigation.actions.db.DbRestoreAction;
+import org.openlca.app.navigation.actions.db.DbSyncAction;
 import org.openlca.app.navigation.actions.db.DbValidationAction;
 import org.openlca.app.rcp.images.Images;
 import org.openlca.app.util.Actions;
@@ -49,6 +50,7 @@ class DatabaseMenu implements IMenuListener {
 		var checkLinksAction = Actions.create(
 				M.CheckLinkingProperties, null, LinkingPropertiesPage::show);
 		var actions = new IAction[] {
+				new DbSyncAction(),
 				new DbExportAction(),
 				new DbValidationAction(),
 				new DbCopyAction(),

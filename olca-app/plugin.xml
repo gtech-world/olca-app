@@ -582,7 +582,7 @@
 			</property>
 			<property
          name="aboutText"
-         value="AICP LCA Tool 1.0.2&#x0A;&#x0A;Copyright (c) 2023 GTech International Ltd. All rights reserved.&#x0A;Visit https://gtech.world">
+         value="AICP LCA Tool 1.0.3&#x0A;&#x0A;Copyright (c) 2023 GTech International Ltd. All rights reserved.&#x0A;Visit https://gtech.world">
 			</property>
 			<property
 					name="aboutImage"

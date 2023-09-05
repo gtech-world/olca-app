@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="aicpLCA" uid="aicpLCA" id="olca-app.aicpLCA" application="org.openlca.app.Application" version="1.0.2" useFeatures="false" includeLaunchers="true" autoIncludeRequirements="true">
+<product name="aicpLCA" uid="aicpLCA" id="olca-app.aicpLCA" application="org.openlca.app.Application" version="1.0.3" useFeatures="false" includeLaunchers="true" autoIncludeRequirements="true">
 
    <aboutInfo>
       <image path="/olca-app/icons/about.png"/>
       <text>
-         AICP LCA Tool 1.0.2
+         AICP LCA Tool 1.0.3
 
 Copyright (c) 2023 GTech International Ltd. All rights reserved.
 Visit https://gtech.world
