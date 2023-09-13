@@ -11,13 +11,12 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.action.Action;
-import org.openlca.app.App;
+import org.eclipse.ui.PlatformUI;
 import org.openlca.app.M;
 import org.openlca.app.collaboration.views.CompareView;
 import org.openlca.app.collaboration.views.HistoryView;
@@ -108,23 +107,39 @@ public class DbSyncAction extends Action implements INavigationAction {
 		run(config);
 	}
 
-	public boolean run(DatabaseConfig config) {
+	public void run(DatabaseConfig config) {
 		var active = Database.isActive(config);
 		if (!active)
-			return false;
+			return;
 		if (active)
 			if (!Editors.closeAll())
-				return false;
+				return;
 		var runner = new SyncRunner(config);
-		App.runWithProgress(M.SyncDB, runner);
+		var task = new Thread(runner);
+		task.start();
+		var progress = PlatformUI.getWorkbench().getProgressService();
+		try {
+			progress.run(true, true, (m) -> {
+				m.beginTask(M.SyncDB, IProgressMonitor.UNKNOWN);
+				while (task.isAlive()) {
+					try {
+						Thread.sleep(1000);
+						if (m.isCanceled()) {
+							task.interrupt();
+						}
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				m.done();
+			});
+		} catch (Exception e) {
+			log.error("Error while running progress " + M.SyncDB, e);
+		}
 		updateUI(runner.state);
-		return true;
 	}
 
-	private <T> T httpGET(String path, Class<T> classz)
-			throws IOException, InterruptedException, NoSuchAlgorithmException, KeyManagementException {
-//		System.setProperty("https.protocols", "TLSv1,TLSv1.1,TLSv1.2");
-//		System.setProperty("jdk.tls.useExtendedMasterSecret", "false");
+	private <T> T httpGET(String path, Class<T> classz) throws Exception {
 		var req = HttpRequest.newBuilder(URI.create(base + path)).build();
 		var res = instanceClinet().send(req, HttpResponse.BodyHandlers.ofString());
 		return new Gson().fromJson(res.body(), classz);
@@ -150,8 +165,7 @@ public class DbSyncAction extends Action implements INavigationAction {
 		return "v" + version + "-" + uuid + ".zip";
 	}
 
-	private void downloadFile(String fileUrl, String saveDir, String fileName)
-			throws IOException, InterruptedException, NoSuchAlgorithmException, KeyManagementException {
+	private void downloadFile(String fileUrl, String saveDir, String fileName) throws Exception {
 		var filePath = saveDir + File.separator + fileName;
 		var old = new File(filePath);
 		if (old.exists())
@@ -168,28 +182,30 @@ public class DbSyncAction extends Action implements INavigationAction {
 			long fileSize = httpResponse.headers().firstValueAsLong("Content-Length").orElse(-1L);
 			if (fileSize <= 0)
 				throw new IOException("Down Error");
-			InputStream inputStream = httpResponse.body();
 			new File(saveDir).mkdirs();
-			var raf = new RandomAccessFile(tempPath, "rw");
-			@SuppressWarnings("unused")
-			long downloadedBytes = 0L;
-			if (startPos > 0) {
-				downloadedBytes = startPos;
-				raf.seek(startPos);
+			try (InputStream inputStream = httpResponse.body(); var raf = new RandomAccessFile(tempPath, "rw");) {
+				@SuppressWarnings("unused")
+				long downloadedBytes = 0L;
+				if (startPos > 0) {
+					downloadedBytes = startPos;
+					raf.seek(startPos);
+				}
+				byte[] buffer = new byte[BUFFER_SIZE];
+				int len;
+				while ((len = inputStream.read(buffer)) != -1) {
+					raf.write(buffer, 0, len);
+					downloadedBytes += len;
+				}
+
+				var fileTemp = new File(tempPath);
+				var file = new File(filePath);
+				boolean success = fileTemp.renameTo(file);
+				if (!success)
+					throw new IOException("Rename Error");
+			} catch (Exception e) {
+				throw e;
 			}
-			byte[] buffer = new byte[BUFFER_SIZE];
-			int len;
-			while ((len = inputStream.read(buffer)) != -1) {
-				raf.write(buffer, 0, len);
-				downloadedBytes += len;
-			}
-			inputStream.close();
-			raf.close();
-			var fileTemp = new File(tempPath);
-			var file = new File(filePath);
-			boolean success = fileTemp.renameTo(file);
-			if (!success)
-				throw new IOException("Rename Error");
+
 		} else {
 			throw new IOException("Network Error");
 		}
@@ -209,8 +225,7 @@ public class DbSyncAction extends Action implements INavigationAction {
 			this.config = config;
 		}
 
-		private ArrayList<String> getCloudVersions()
-				throws IOException, InterruptedException, NoSuchAlgorithmException, KeyManagementException {
+		private ArrayList<String> getCloudVersions() throws Exception {
 			@SuppressWarnings("unchecked")
 			var res = httpGET("/api/model/history/all",
 					(Class<RES<ArrayList<String>>>) new RES<ArrayList<String>>().getClass());
@@ -219,8 +234,7 @@ public class DbSyncAction extends Action implements INavigationAction {
 			return new ArrayList<>();
 		}
 
-		private void loadData(ArrayList<String> cloudVs)
-				throws IOException, InterruptedException, NoSuchAlgorithmException, KeyManagementException {
+		private void loadData(ArrayList<String> cloudVs) throws Exception {
 			for (int i = 0; i < cloudVs.size(); i++) {
 				downloadFile(base + "/api/model/history/" + cloudVs.get(i) + "/download", cachePath,
 						versionZipName(i + 1, cloudVs.get(i)));
@@ -254,7 +268,10 @@ public class DbSyncAction extends Action implements INavigationAction {
 				setSyncDBVersion(config.name(), cloudV);
 				state = SYNC_STATE.SUCCESS;
 			} catch (Exception e) {
-				state = SYNC_STATE.FAILED;
+				var isCanceled = e instanceof InterruptedException;
+				if (!isCanceled) {
+					state = SYNC_STATE.FAILED;
+				}
 				e.printStackTrace();
 			}
 		}
