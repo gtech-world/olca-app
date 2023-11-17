@@ -51,6 +51,7 @@ import org.openlca.io.ecospold2.input.ImportConfig;
 import org.openlca.io.ecospold2.input.MethodImport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.openlca.app.navigation.actions.db.DbSyncAction;
 
 @SuppressWarnings("restriction")
 public class RcpActionBarAdvisor extends ActionBarAdvisor {
@@ -75,6 +76,7 @@ public class RcpActionBarAdvisor extends ActionBarAdvisor {
 		coolBar.add(new ToolBarContributionItem(toolbar, "main"));
 		toolbar.add(Actions.create(
 			M.Home, Icon.HOME.descriptor(), StartPage::open));
+		toolbar.add(new DbSyncAction());
 		toolbar.add(saveAction);
 		toolbar.add(saveAsAction);
 		toolbar.add(saveAllAction);

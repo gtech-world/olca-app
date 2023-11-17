@@ -8,6 +8,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.openlca.app.App;
+import org.openlca.app.collaboration.dialogs.LoginAICP;
 import org.openlca.app.db.Database;
 import org.openlca.app.logging.Console;
 import org.openlca.app.logging.LoggerConfig;
@@ -70,6 +71,7 @@ public class RcpActivator extends AbstractUIPlugin {
 		SslCertificates.load();
 		Preferences.init();
 		App.getSolver();
+		LoginAICP.showLogin();
 	}
 
 	@Override
