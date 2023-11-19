@@ -117,6 +117,12 @@
 			<artifactId>ph-css</artifactId>
 			<version>6.3.2</version>
 		</dependency>
+		
+		<dependency>
+    		<groupId>cn.hutool</groupId>
+    		<artifactId>hutool-all</artifactId>
+    		<version>5.8.23</version>
+		</dependency>
 
 	</dependencies>
 

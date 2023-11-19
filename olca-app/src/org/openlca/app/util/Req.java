@@ -5,7 +5,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-
 import com.google.gson.Gson;
 
 public class Req {
@@ -22,10 +21,10 @@ public class Req {
 		return gson.fromJson(res.body(), classz);
 	}
 	
-	public static <T> T httpPost(String path,Object body, Class<T> classz) throws Exception {
-		var bodyPub = HttpRequest.BodyPublishers.ofString(gson.toJson(body));
+	public static <T> T httpPost(String path,String body, Class<T> classz) throws Exception {
+		var bodyPub = HttpRequest.BodyPublishers.ofString(body);
 		var req = HttpRequest.newBuilder(URI.create(base + path))
-				.header("Content-Type", "application/json")
+				.header("Content-Type", "application/json;charset=utf-8")
 				.POST(bodyPub)
 				.build();
 		var res = instanceClinet().send(req, HttpResponse.BodyHandlers.ofString());
@@ -36,6 +35,9 @@ public class Req {
 		public int status;
 		public String message;
 		public T data;
+		public RES(){
+			
+		}
 	}
 	
 	private static HttpClient instanceClinet() {

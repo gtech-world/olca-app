@@ -37,7 +37,7 @@ import org.openlca.jsonld.Json;
 import com.google.common.base.Predicates;
 import com.google.gson.JsonObject;
 
-class ConflictResolutionMap implements ConflictResolver {
+public class ConflictResolutionMap implements ConflictResolver {
 
 	private final TypedRefIdMap<ConflictResolution> resolutions;
 
@@ -68,7 +68,7 @@ class ConflictResolutionMap implements ConflictResolver {
 		return resolve(Constants.REMOTE_REF, false);
 	}
 
-	static ConflictResult forStash()
+	public static ConflictResult forStash()
 			throws InvocationTargetException, IOException, GitAPIException, InterruptedException {
 		return resolve(org.eclipse.jgit.lib.Constants.R_STASH, true);
 	}
@@ -274,7 +274,7 @@ class ConflictResolutionMap implements ConflictResolver {
 		}
 	}
 
-	record ConflictResult(ConflictResolutionMap resolutions, boolean stashedChanges) {
+	public record ConflictResult(ConflictResolutionMap resolutions, boolean stashedChanges) {
 
 	}
 

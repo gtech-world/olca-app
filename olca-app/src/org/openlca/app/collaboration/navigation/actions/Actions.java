@@ -28,7 +28,7 @@ import org.openlca.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class Actions {
+public class Actions {
 
 	private static final Logger log = LoggerFactory.getLogger(Actions.class);
 

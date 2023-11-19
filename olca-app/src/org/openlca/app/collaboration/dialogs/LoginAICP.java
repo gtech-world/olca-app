@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.eclipse.swt.SWT;
@@ -40,7 +41,7 @@ public class LoginAICP extends FormDialog {
 		}
 	}
 
-	private static void saveUserInfo(UserInfo uinfo) throws Exception {
+	private static void saveUserInfo(UserInfo uinfo) {
 		try {
 			File uinfoFile = new File(Workspace.root(), ".userinfo");
 			if (!uinfoFile.exists()) {				
@@ -65,13 +66,9 @@ public class LoginAICP extends FormDialog {
 				return null;
 			}
 			try {
-				var body = new Object() {
-					public String name = auth.user();
-					public String password = auth.password();
-				};
-				@SuppressWarnings("unchecked")
-				var reqres = Req.httpPost("/api/base/login", body,  (Class<Req.RES<UserInfo>>)new Req.RES<UserInfo>().getClass());
-				if(reqres.status != 200|| reqres.data == null) {
+				var bodyStr = "{\"name\":\""+auth.user()+"\", \"password\":\""+auth.password()+"\"}";
+				var reqres = Req.httpPost("/api/base/login", bodyStr, ResUserInfo.class);
+				if(reqres.data == null) {
 					continue;
 				}
 				saveUserInfo(reqres.data);
@@ -84,13 +81,9 @@ public class LoginAICP extends FormDialog {
 	}
 
 	public static GitCredentialsProvider promptCredentials() {
-		var uinfo = getSavedUserInfo();
-		if(uinfo != null) {
-			return new GitCredentialsProvider(uinfo.gitToken, uinfo.branch); 
-		}
 		// doLogin
-		uinfo = showLogin();
-		if(uinfo == null) {
+		var uinfo = showLogin();
+		if(uinfo == null || StringUtils.isAnyEmpty(uinfo.gitToken, uinfo.branch)) {
 			return null;
 		}
 		return new GitCredentialsProvider(uinfo.gitToken, uinfo.branch);
@@ -125,6 +118,8 @@ public class LoginAICP extends FormDialog {
 
 	public static class GitCredentialsProvider extends UsernamePasswordCredentialsProvider {
 		public String branch;
+		public String user = "git";
+		public String email = "noreply@git.com";
 		GitCredentialsProvider(String token, String branch) {
 			super("oauth2", token);
 			this.branch = branch;
@@ -142,6 +137,7 @@ public class LoginAICP extends FormDialog {
 		 public String updateTime;
 		 
 	}
+	
 	public static class UserInfo {
        public int apiKeyId;
        public int orgId;
@@ -163,5 +159,11 @@ public class LoginAICP extends FormDialog {
        
        public String branch;
        public String gitToken = "";
+	}
+	
+	public static class ResUserInfo extends Req.RES<UserInfo> {
+		public ResUserInfo(){
+			super();
+		}
 	}
 }
