@@ -28,7 +28,7 @@ import org.openlca.git.util.Repositories;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class WorkspaceLibraryResolver implements LibraryResolver {
+public class WorkspaceLibraryResolver implements LibraryResolver {
 
 	private static final Logger log = LoggerFactory.getLogger(WorkspaceLibraryResolver.class);
 	private final LibraryDir libDir;
@@ -37,7 +37,7 @@ class WorkspaceLibraryResolver implements LibraryResolver {
 		this.libDir = Workspace.getLibraryDir();
 	}
 
-	static WorkspaceLibraryResolver forRemote() {
+	public static WorkspaceLibraryResolver forRemote() {
 		var git = org.openlca.app.db.Repository.get().git;
 		var commits = Commits.of(git);
 		var commit = commits.get(commits.resolve(Constants.REMOTE_BRANCH));
@@ -49,7 +49,7 @@ class WorkspaceLibraryResolver implements LibraryResolver {
 		return resolver;
 	}
 
-	static WorkspaceLibraryResolver forStash() throws GitAPIException {
+	public static WorkspaceLibraryResolver forStash() throws GitAPIException {
 		var git = org.openlca.app.db.Repository.get().git;
 		var commits = Git.wrap(git).stashList().call();
 		if (commits == null || commits.isEmpty())

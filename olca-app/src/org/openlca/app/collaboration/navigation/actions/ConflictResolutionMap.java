@@ -57,7 +57,7 @@ public class ConflictResolutionMap implements ConflictResolver {
 			return null;
 		return resolution.type;
 	}
-	
+
 	@Override
 	public ConflictResolution resolveConflict(ModelRef ref, JsonObject remote) {
 		return resolutions.get(ref);
@@ -144,18 +144,13 @@ public class ConflictResolutionMap implements ConflictResolver {
 				conflicts.add(conflict);
 			}
 		});
-		remoteChanges.stream()
-				.map(remote -> findConflict(remote, localChanges))
-				.filter(Predicates.notNull())
+		remoteChanges.stream().map(remote -> findConflict(remote, localChanges)).filter(Predicates.notNull())
 				.forEach(conflicts::add);
 		return conflicts;
 	}
 
 	private static TriDiff findConflict(Diff element, List<Diff> others) {
-		return others.stream()
-				.filter(e -> e.path.equals(element.path))
-				.findFirst()
-				.map(e -> new TriDiff(element, e))
+		return others.stream().filter(e -> e.path.equals(element.path)).findFirst().map(e -> new TriDiff(element, e))
 				.orElse(null);
 	}
 
@@ -180,9 +175,7 @@ public class ConflictResolutionMap implements ConflictResolver {
 				return false;
 			GitStashDrop.from(repo.git).run();
 		}
-		var stashCreate = GitStashCreate.from(Database.get())
-				.to(repo.git)
-				.update(repo.gitIndex);
+		var stashCreate = GitStashCreate.from(Database.get()).to(repo.git).update(repo.gitIndex);
 		if (discard) {
 			stashCreate = stashCreate.discard();
 		} else {
@@ -205,8 +198,7 @@ public class ConflictResolutionMap implements ConflictResolver {
 		var dialog = new MergeDialog(node);
 		if (dialog.open() == MergeDialog.CANCEL)
 			return null;
-		dialog.getResolvedConflicts().forEach(
-				(type, refId, resolution) -> resolved.put(type, refId, resolution));
+		dialog.getResolvedConflicts().forEach((type, refId, resolution) -> resolved.put(type, refId, resolution));
 		return resolved;
 	}
 
@@ -233,8 +225,7 @@ public class ConflictResolutionMap implements ConflictResolver {
 			return null;
 		workspace.equal.forEach(c -> solved.put(c, ConflictResolution.isEqual()));
 		local.equal.forEach(c -> solved.put(c, ConflictResolution.isEqual()));
-		local.remaining.stream()
-				.filter(Predicate.not(TriDiff::conflict))
+		local.remaining.stream().filter(Predicate.not(TriDiff::conflict))
 				.forEach(conflict -> solved.put(conflict, ConflictResolution.keep()));
 		return new ConflictResolutionMap(solved);
 	}
@@ -283,7 +274,7 @@ public class ConflictResolutionMap implements ConflictResolver {
 		private static Conflicts none() {
 			return new Conflicts(new ArrayList<>(), new ArrayList<>());
 		}
-		
+
 	}
 
 }

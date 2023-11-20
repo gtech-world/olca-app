@@ -69,12 +69,12 @@ public class Repository {
 		open(gitDir);
 		if (current == null)
 			return null;
-		try {
-			current.isCollaborationServer(current.client != null && current.client.isCollaborationServer());
-		} catch (WebRequestException e) {
-			current = null;
-			throw e;
-		}
+//		try {
+//			current.isCollaborationServer(current.client != null && current.client.isCollaborationServer());
+//		} catch (WebRequestException e) {
+//			current = null;
+//			throw e;
+//		}
 		return current;
 	}
 

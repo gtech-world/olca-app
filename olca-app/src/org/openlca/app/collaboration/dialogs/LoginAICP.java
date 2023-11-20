@@ -83,7 +83,7 @@ public class LoginAICP extends FormDialog {
 	public static GitCredentialsProvider promptCredentials() {
 		// doLogin
 		var uinfo = showLogin();
-		if(uinfo == null || StringUtils.isAnyEmpty(uinfo.gitToken, uinfo.branch)) {
+		if(uinfo == null) {
 			return null;
 		}
 		return new GitCredentialsProvider(uinfo.gitToken, uinfo.branch);
@@ -118,11 +118,13 @@ public class LoginAICP extends FormDialog {
 
 	public static class GitCredentialsProvider extends UsernamePasswordCredentialsProvider {
 		public String branch;
-		public String user = "git";
-		public String email = "noreply@git.com";
-		GitCredentialsProvider(String token, String branch) {
+		public String user = "user";
+		public String email = "noreply@gitlab.gtech.world";
+		public String token;
+		public GitCredentialsProvider(String token, String branch) {
 			super("oauth2", token);
 			this.branch = branch;
+			this.token = token;
 		}
 	}
 
