@@ -162,6 +162,7 @@ public enum Icon {
 	STASH("collaboration/stash.png"),
 	STASH_CREATE("collaboration/stash_create.png"),
 	STASH_APPLY("collaboration/stash_apply.png"),
+	SYNC("sync.png"),
 
 	TARGET("graphical/target.png"),
 

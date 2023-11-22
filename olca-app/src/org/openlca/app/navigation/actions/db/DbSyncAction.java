@@ -2,20 +2,17 @@ package org.openlca.app.navigation.actions.db;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.PersonIdent;
 import org.eclipse.jgit.transport.RefSpec;
 import org.eclipse.jgit.transport.URIish;
 import org.eclipse.ui.PlatformUI;
 import org.openlca.app.M;
 import org.openlca.app.collaboration.dialogs.LoginAICP;
-import org.openlca.app.collaboration.navigation.actions.ConflictResolutionMap;
 import org.openlca.app.collaboration.navigation.actions.WorkspaceLibraryResolver;
 import org.openlca.app.collaboration.viewers.diff.TriDiff;
 import org.openlca.app.db.Database;
@@ -30,19 +27,15 @@ import org.openlca.app.util.Popup;
 import org.openlca.core.database.Daos;
 import org.openlca.core.database.config.DatabaseConfig;
 import org.openlca.core.model.ModelType;
-import org.openlca.core.model.Version;
 import org.openlca.core.model.descriptors.RootDescriptor;
 import org.openlca.git.actions.ConflictResolver;
 import org.openlca.git.actions.GitCommit;
 import org.openlca.git.actions.GitMerge;
 import org.openlca.git.model.Change;
-import org.openlca.git.model.Diff;
 import org.openlca.git.model.ModelRef;
-import org.openlca.git.model.Reference;
 import org.openlca.git.util.Diffs;
 import org.openlca.git.util.History;
 import org.openlca.git.util.TypedRefIdMap;
-import org.openlca.jsonld.Json;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,7 +48,7 @@ public class DbSyncAction extends Action implements INavigationAction {
 
 	public DbSyncAction() {
 		setText(M.SyncDB);
-		setImageDescriptor(Icon.UPDATE.descriptor());
+		setImageDescriptor(Icon.SYNC.descriptor());
 	}
 
 	@Override
@@ -132,11 +125,10 @@ public class DbSyncAction extends Action implements INavigationAction {
 
 		private Repository initDbRepo() throws Exception {
 			var gitDir = Repository.gitDir(config.name());
-			var remoteUrl = "https://" + "eericxu" + ":" + gcp.token + "@gitlab.gtech.world/eericxu/test-lca.git";
+			var remoteUrl = "https://" + gcp.user + ":" + gcp.token + "@gitlab.gtech.world/" + gcp.user + "/"
+					+ gcp.repoName + ".git";
 			if (!gitDir.exists()) {
-//				GitInit.in(gitDir).remoteUrl("").run();
 				var git = Git.init().setInitialBranch(branch).setBare(true).setGitDir(gitDir).call();
-//				var remoteUrl = "https://gitlab.gtech.world/eericxu/test-lca.git";
 				git.remoteAdd().setName(remote).setUri(new URIish(remoteUrl)).call();
 				var repo = Repository.initialize(gitDir);
 				if (repo == null)
@@ -148,46 +140,9 @@ public class DbSyncAction extends Action implements INavigationAction {
 			}
 		}
 
-		private static String string(Map<String, Object> map, String field) {
-			var value = map.get(field);
-			if (value == null)
-				return null;
-			return value.toString();
-		}
-
-		private static long date(Map<String, Object> map, String field) {
-			var value = map.get(field);
-			if (value == null)
-				return 0;
-			try {
-				return Long.parseLong(value.toString());
-			} catch (NumberFormatException e) {
-				var date = Json.parseDate(value.toString());
-				if (date == null)
-					return 0;
-				return date.getTime();
-			}
-		}
-
-		private static boolean equalsDescriptor(Diff diff, RootDescriptor d) {
-			if (d == null)
-				return false;
-			if (ObjectId.zeroId().equals(diff.oldObjectId))
-				return false;
-			var ref = new Reference(diff.path, diff.oldCommitId, diff.oldObjectId);
-			var remoteModel = Repository.get().datasets.parse(ref, "lastChange", "version");
-			if (remoteModel == null)
-				return false;
-			var version = Version.fromString(string(remoteModel, "version")).getValue();
-			var lastChange = date(remoteModel, "lastChange");
-			return version == d.version && lastChange == d.lastChange;
-		}
-
 		private void pullAndMerge(Repository repo) throws Exception {
-
 			var lastId = repo.commits.find().refs(refs).latestId();
-			Git.wrap(repo.git).fetch().setCredentialsProvider(gcp).setRemote(remote).setRefSpecs(locRefs)
-					.call();
+			Git.wrap(repo.git).fetch().setCredentialsProvider(gcp).setRemote(remote).setRefSpecs(locRefs).call();
 			var commits = repo.commits.find().refs(refs).after(lastId).all();
 			Collections.reverse(commits);
 			var libraryResolver = WorkspaceLibraryResolver.forRemote();
@@ -213,8 +168,12 @@ public class DbSyncAction extends Action implements INavigationAction {
 			if (newCommits.isEmpty())
 				return;
 			Git.wrap(repo.git).gc().call();
-			Git.wrap(repo.git).push().setForce(true).setCredentialsProvider(gcp).setRemote(remote)
+			@SuppressWarnings("unused")
+			var res = Git.wrap(repo.git).push().setForce(true).setCredentialsProvider(gcp).setRemote(remote)
 					.setRefSpecs(new RefSpec(locRef)).call();
+//			var spl = res.spliterator();
+//			var it = res.iterator();
+//			var nex = it.next();
 			return;
 		}
 

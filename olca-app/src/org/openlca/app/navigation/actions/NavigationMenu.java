@@ -135,7 +135,7 @@ public class NavigationMenu extends CommonActionProvider {
 				new RenameAction());
 
 		addIOMenu(selection, menu);
-		RepositoryMenu.add(selection, menu);
+//		RepositoryMenu.add(selection, menu);
 	}
 
 	public static int addActions(

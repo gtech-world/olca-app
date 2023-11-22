@@ -11,9 +11,9 @@ public class Req {
 	private static HttpClient client;
 	private static Gson gson = new Gson();
 	// beta
-	// private final String base = "https://pre-api.gtech.world";
+	 private static final String base = "https://pre-api.gtech.world";
 	// prod
-	private static final String base = "https://api-v2.gtech.world";
+//	private static final String base = "https://api-v2.gtech.world";
 
 	public static <T> T httpGET(String path, Class<T> classz) throws Exception {
 		var req = HttpRequest.newBuilder(URI.create(base + path)).build();

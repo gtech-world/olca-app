@@ -76,11 +76,11 @@ public class RcpActionBarAdvisor extends ActionBarAdvisor {
 		coolBar.add(new ToolBarContributionItem(toolbar, "main"));
 		toolbar.add(Actions.create(
 			M.Home, Icon.HOME.descriptor(), StartPage::open));
-		toolbar.add(new DbSyncAction());
 		toolbar.add(saveAction);
 		toolbar.add(saveAsAction);
 		toolbar.add(saveAllAction);
 		coolBar.add(toolbar);
+		toolbar.add(new DbSyncAction());
 	}
 
 	@Override
