@@ -141,17 +141,11 @@ public class DbSyncAction extends Action implements INavigationAction {
 		}
 
 		private void pullAndMerge(Repository repo) throws Exception {
-			var lastId = repo.commits.find().refs(refs).latestId();
 			Git.wrap(repo.git).fetch().setCredentialsProvider(gcp).setRemote(remote).setRefSpecs(locRefs).call();
-			var commits = repo.commits.find().refs(refs).after(lastId).all();
-			Collections.reverse(commits);
 			var libraryResolver = WorkspaceLibraryResolver.forRemote();
 			if (libraryResolver == null)
 				return;
 			var descriptors = new TypedRefIdMap<RootDescriptor>();
-			for (var type : ModelType.values()) {
-				Daos.root(Database.get(), type).getDescriptors().forEach(d -> descriptors.put(d.type, d.refId, d));
-			}
 			GitMerge.from(repo.git).into(Database.get()).as(pi).update(repo.gitIndex)
 					.resolveConflictsWith(new EqualResolver(descriptors)).resolveLibrariesWith(libraryResolver).run();
 		}
