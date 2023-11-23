@@ -269,8 +269,8 @@ const Page = (props: Props) => {
 
 const bindLinks = () => {
     const config = [
-        ['aicp', 'https://aicp.gtech-cn.co'],
-        ['aicphome', 'https://aicp.gtech-cn.co'],
+        ['aicp', 'https://aicp.gtech.world'],
+        ['aicphome', 'https://aicp.gtech.world'],
         ['lci-down', 'https://github.com/gtech-world/olca-app/releases/latest'],
         ['openlca', 'https://www.openlca.org/'],
         ['news', 'https://www.openlca.org/new'],
