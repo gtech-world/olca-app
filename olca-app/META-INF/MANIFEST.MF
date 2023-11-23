@@ -4,7 +4,7 @@ Bundle-Name: olca-app
 Automatic-Module-Name: olca-app
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-SymbolicName: olca-app;singleton:=true
-Bundle-Version: 1.0.3
+Bundle-Version: 1.0.4
 Bundle-Activator: org.openlca.app.rcp.RcpActivator
 Bundle-Vendor: aicpLCA.org
 Eclipse-BundleShape: dir
@@ -110,7 +110,7 @@ Bundle-ClassPath: .,
  libs/org.eclipse.persistence.core-3.0.3.jar,
  libs/org.eclipse.persistence.jpa.jpql-3.0.3.jar,
  libs/org.eclipse.persistence.jpa-3.0.3.jar,
- libs/osgi-resource-locator-1.0.3.jar,
+ libs/osgi-resource-locator-1.0.4.jar,
  libs/perfmark-api-0.25.0.jar,
  libs/ph-commons-10.1.2.jar,
  libs/ph-css-6.3.2.jar,
